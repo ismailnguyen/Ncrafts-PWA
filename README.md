@@ -1,4 +1,6 @@
+# NCrafts 2018
 
+> Progressive Web App for conferences
 
 ## Build Setup
 
