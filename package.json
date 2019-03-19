@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Ismaïl <nguyen.ismail@gmail.com>",
   "private": true,
+  "main": "server.js",
   "scripts": {
     "postinstall": "npm run build",
     "start": "node server.js",
