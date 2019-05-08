@@ -1,8 +1,7 @@
-//This is the service worker with the Cache-first network
-
-var CACHE = 'ncraft-precache';
+var CACHE = 'ncrafts-precache';
 var precacheFiles = [
       '/',
+      ,'index.html',
       '/dist/build.js'
     ];
 
@@ -25,7 +24,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   console.log('The service worker is serving the asset.'+ event.request.url);
 
-  event.respondWith(fromCache(event.request).catch(fromServer(event.request)));
+  event.respondWith(fromServer(event.request).catch(fromCache(event.request)));
 
   event.waitUntil(update(event.request));
 });
