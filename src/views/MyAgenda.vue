@@ -3,7 +3,7 @@
         <MyAgendaMenu :title="'My Agenda'" :days="days" />
 
         <div class="container">
-            <Room :events="currentDayBookmarkedEvents" />
+            <MyAgendaDay :events="currentDayBookmarkedEvents" />
         </div>
 
         <div class="progress" v-show="loading">
@@ -15,7 +15,7 @@
 <script>
     import ScheduleService from '../services/ScheduleService'
     import MyAgendaMenu from '../components/MyAgendaMenu.vue'
-    import Room from '../components/Room.vue'
+    import MyAgendaDay from '../components/MyAgendaDay.vue'
     
     export default {
         data()
@@ -75,7 +75,7 @@
                 let schedule = JSON.parse(localStorage.getItem('schedule'));
                 let bookmarkedEvents = JSON.parse(localStorage.getItem('bookmark'));
 
-                let dayNumber = this.$route.params.dayNumber + 1 || this.defaultDayNumber;
+                let dayNumber = Number(this.$route.params.dayNumber) + 1 || this.defaultDayNumber;
 
                 let currentDaySchedule = schedule.days.find(d => d.day == dayNumber);
                 
@@ -93,7 +93,7 @@
         },
         components: {
             MyAgendaMenu,
-            Room
+            MyAgendaDay
         },
         beforeMount() {
             this.fetchDatas();

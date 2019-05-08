@@ -9,7 +9,7 @@
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
                 <li v-for="(day, index) in days" :key="index" class="tab" @click="openDayView(index+1)">
-                    <a v-if="index == (currentDayNumber)" class="active">{{ day.title }}</a>
+                    <a v-if="index == (currentDayNumber-1)" class="active">{{ day.title }}</a>
                     <a v-else>{{ day.title }}</a>
                 </li>
             </ul>
