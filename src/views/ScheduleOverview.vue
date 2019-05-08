@@ -16,6 +16,7 @@
         data()
         {
             return {
+                scheduleService: new ScheduleService(),
                 days: null,
                 loading: true
             }
@@ -24,16 +25,10 @@
             fetchDatas: function ()
             {
                 if(navigator.onLine) {
-                    let scheduleService = new ScheduleService();
-
-                    scheduleService
-                    .get()
-                    .then(schedule => {
-                        localStorage.setItem('schedule', JSON.stringify(schedule));
-                    })
+                    this.scheduleService.fetch()
                 }
 
-                let schedule = JSON.parse(localStorage.getItem('schedule'));
+                let schedule = this.scheduleService.get();
                 this.days = schedule.days
 
                 this.loading = false;

@@ -16,6 +16,7 @@
         data()
         {
             return {
+                speakersService: new SpeakersService(),
                 speakers: [],
                 loading: true
             }
@@ -23,11 +24,11 @@
         methods: {
             fetchDatas: function ()
             {
-                let speakersService = new SpeakersService();
+                if(navigator.onLine) {
+                    this.speakersService.fetch()
+                }
 
-                speakersService
-                .get()
-                .then(speakers => this.speakers = speakers)
+                this.speakers = this.speakersService.get()
 
                 this.loading = false;
             }

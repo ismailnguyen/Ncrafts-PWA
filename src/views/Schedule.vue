@@ -21,6 +21,7 @@
         data()
         {
             return {
+                scheduleService: new ScheduleService(),
                 dayNumber: this.$route.params.dayNumber,
                 currentDaySchedule: {},
                 loading: true
@@ -30,16 +31,10 @@
             fetchDatas: function ()
             {
                 if(navigator.onLine) {
-                    let scheduleService = new ScheduleService();
-
-                    scheduleService
-                    .get()
-                    .then(schedule => {
-                        localStorage.setItem('schedule', JSON.stringify(schedule));
-                    })
+                    this.scheduleService.fetch()
                 }
 
-                let schedule = JSON.parse(localStorage.getItem('schedule'));
+                let schedule = this.scheduleService.get();
 
                 this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber);
 
@@ -48,7 +43,7 @@
         },
         computed: {
             currentRoomEvents: function () {
-                let schedule = JSON.parse(localStorage.getItem('schedule'));
+                let schedule = this.scheduleService.get();
 
                 let dayNumber = this.$route.params.dayNumber;
                 let roomNumber = this.$route.params.roomNumber;

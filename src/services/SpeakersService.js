@@ -1,10 +1,26 @@
 function SpeakersService ()
 {
-    this.get = function()
+    const localStorageKey = 'speakers';
+    const apiEndpoint = '//ncrafts.io/datas/speakers.js';
+
+    this.fetch = function()
     {
-        return fetch('/datas/speakers.js')
-                .then(response => response.json())
-                .then(response => response.speakers)
+        fetch(apiEndpoint,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                method: 'GET',
+                mode: 'cors',
+            }
+            )
+            .then(response => response.json())
+            .then(schedule => localStorage.setItem(localStorageKey, JSON.stringify(schedule)))
+    }
+
+    this.get = function () {
+        return JSON.parse(localStorage.getItem(localStorageKey)) || [];
     }
 };
 

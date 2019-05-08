@@ -14,6 +14,7 @@
 
 <script>
     import ScheduleService from '../services/ScheduleService'
+    import BookmarkService from '../services/BookmarkService'
     import MyAgendaMenu from '../components/MyAgendaMenu.vue'
     import MyAgendaDay from '../components/MyAgendaDay.vue'
     
@@ -21,6 +22,8 @@
         data()
         {
             return {
+                scheduleService: new ScheduleService(),
+                bookmarkService: new BookmarkService(),
                 dayNumber: this.$route.params.dayNumber || 2,
                 days: [],
                 loading: true,
@@ -31,16 +34,10 @@
             fetchDatas: function ()
             {
                 if(navigator.onLine) {
-                    let scheduleService = new ScheduleService();
-
-                    scheduleService
-                    .get()
-                    .then(schedule => {
-                        localStorage.setItem('schedule', JSON.stringify(schedule));
-                    })
+                    this.scheduleService.fetch()
                 }
 
-                let schedule = JSON.parse(localStorage.getItem('schedule'));
+                let schedule = this.scheduleService.get();
 
                 this.days = schedule.days.filter(day => day.title.includes('Day'));
 
@@ -72,8 +69,8 @@
         },
         computed: {
             currentDayBookmarkedEvents: function () {
-                let schedule = JSON.parse(localStorage.getItem('schedule'));
-                let bookmarkedEvents = JSON.parse(localStorage.getItem('bookmark'));
+                let schedule = this.scheduleService.get();
+                let bookmarkedEvents = this.bookmarkService.get();
 
                 let dayNumber = Number(this.$route.params.dayNumber) + 1 || this.defaultDayNumber;
 

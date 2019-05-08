@@ -42,6 +42,7 @@
 </template>
 
 <script>
+    import BookmarkService from '../services/BookmarkService'
     import showdown from 'showdown';
 
     export default {
@@ -49,6 +50,7 @@
         data()
         {
             return {
+                bookmarkService: new BookmarkService(),
                 showDetails: false,
                 isBookmarked: false,
                 isTalk: this.event.type == 'Talk' || this.event.type == 'conference' || this.event.type == 'Lightning Talk'
@@ -56,20 +58,20 @@
         },
         methods: {
             bookmark: function () {
-                let bookmark = JSON.parse(localStorage.getItem('bookmark')) || [];
+                let bookmarks = this.bookmarkService.get();
 
-                let index = bookmark.indexOf(this.event.id);
+                let index = bookmarks.indexOf(this.event.id);
                 
                 if (index > -1) {
-                    bookmark.splice(index, 1);
+                    bookmarks.splice(index, 1);
                     this.isBookmarked = false;
                 }
                 else {
-                    bookmark.push(this.event.id);
+                    bookmarks.push(this.event.id);
                     this.isBookmarked = true;
                 }
 
-                localStorage.setItem('bookmark', JSON.stringify(bookmark));
+                this.bookmarkService.set(bookmarks);
             },
 
             formatMarkdown: function (value) {
@@ -79,9 +81,9 @@
             },
 
             fetchBookmark: function () {
-                let bookmark = JSON.parse(localStorage.getItem('bookmark')) || [];
+                let bookmarks = this.bookmarkService.get();
 
-                this.isBookmarked = bookmark.includes(this.event.id);
+                this.isBookmarked = bookmarks.includes(this.event.id);
             }
         },
         mounted() {
