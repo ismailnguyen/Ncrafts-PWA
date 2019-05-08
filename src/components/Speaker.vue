@@ -1,7 +1,7 @@
 <template>
     <div class="col s12 m6" @click="showDetails = !showDetails">
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
+        <div class="card rounded">
+            <div class="card-image waves-effect waves-block waves-light rounded">
                 <img class="activator" :src="'//ncrafts.io' + speaker.image">
             </div>
             <div class="card-content">
