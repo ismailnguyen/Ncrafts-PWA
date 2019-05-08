@@ -1,20 +1,11 @@
 function ScheduleService ()
 {
     const localStorageKey = 'schedule';
-    const apiEndpoint = '//ncrafts.io/datas/schedule.js';
+    const apiEndpoint = '//raw.githubusercontent.com/ncraftsconf/newcrafts19/master/datas/schedule.js';
 
     this.fetch = function()
     {
-        fetch(apiEndpoint,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                method: 'GET',
-                mode: 'cors',
-            }
-            )
+        fetch(apiEndpoint)
             .then(response => response.json())
             .then(schedule => localStorage.setItem(localStorageKey, JSON.stringify(schedule)))
     }

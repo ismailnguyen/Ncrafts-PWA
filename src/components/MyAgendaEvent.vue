@@ -6,7 +6,7 @@
 
         <div class="card rounded" @click="showDetails = !showDetails">
             <div class="card-image waves-effect waves-block waves-light rounded">
-                <img class="activator" :src="event.speakerPhoto">
+                <img class="activator" :src="'//ncrafts.io' + event.speakerPhoto">
             </div>
             <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>

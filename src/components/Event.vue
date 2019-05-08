@@ -20,7 +20,7 @@
 
         <div class="card rounded" @click="showDetails = !showDetails">
             <div class="card-image waves-effect waves-block waves-light rounded">
-                <img class="activator" :src="event.speakerPhoto">
+                <img class="activator" :src="'//ncrafts.io' + event.speakerPhoto">
             </div>
             <div class="card-content">
                 <a class="btn-floating halfway-fab waves-effect waves-light red" @click="bookmark()">

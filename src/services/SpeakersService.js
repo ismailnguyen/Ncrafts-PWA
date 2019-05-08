@@ -1,22 +1,13 @@
 function SpeakersService ()
 {
     const localStorageKey = 'speakers';
-    const apiEndpoint = '//ncrafts.io/datas/speakers.js';
+    const apiEndpoint = '//raw.githubusercontent.com/ncraftsconf/newcrafts19/master/datas/speakers.js';
 
     this.fetch = function()
     {
-        fetch(apiEndpoint,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                method: 'GET',
-                mode: 'cors',
-            }
-            )
+        fetch(apiEndpoint)
             .then(response => response.json())
-            .then(schedule => localStorage.setItem(localStorageKey, JSON.stringify(schedule)))
+            .then(datas => localStorage.setItem(localStorageKey, JSON.stringify(datas.speakers)))
     }
 
     this.get = function () {
