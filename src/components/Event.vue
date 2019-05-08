@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!isTalk" class="event col s12">
+    <div v-if="isBreak" class="event col s12">
         <div class="chip">
             {{ event.time }}
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div v-else-if="isTalk" :id="event.id" class="event col s12">
+    <div v-else-if="!isBreak" :id="event.id" class="event col s12">
         <div class="chip">
             {{ event.time }}
         </div>
@@ -53,7 +53,7 @@
                 bookmarkService: new BookmarkService(),
                 showDetails: false,
                 isBookmarked: false,
-                isTalk: this.event.type == 'Talk' || this.event.type == 'conference' || this.event.type == 'Lightning Talk'
+                isBreak: this.event.type.includes('break') || this.event.type.includes('lunch')
             }
         },
         methods: {

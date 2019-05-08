@@ -1,9 +1,11 @@
 <template>
     <div class="row">
-        <div v-for="(day, index) in days" :key="index" class="card rounded" @click="openDayView(day)">
+        <div v-for="(day, index) in days" :key="index" class="card rounded">
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
-                <p><a>{{ day.date }}</a></p>
+                <a :href="'/Schedule/'+day.day+'/1'">
+                    <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
+                    <p><a>{{ day.date }}</a></p>
+                </a>
             </div>
         </div>
     </div>
@@ -32,10 +34,6 @@
                 this.days = schedule.days
 
                 this.loading = false;
-            },
-            
-            openDayView: function (day) {
-                this.$router.push({ name: 'ScheduleDay', params: { dayNumber: day.day, roomNumber: 1 }});
             }
         },
         mounted() {
