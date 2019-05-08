@@ -2,7 +2,7 @@
     <div class="row">
         <div v-for="(day, index) in days" :key="index" class="card rounded">
             <div class="card-content">
-                <a :href="'/Schedule/'+day.day+'/1'">
+                <a :href="'/Schedule/' + day.day + '/1'">
                     <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
                     <p><a>{{ day.date }}</a></p>
                 </a>
@@ -28,10 +28,12 @@
             {
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
+                            .then(schedule => this.days = schedule.days);
                 }
-
-                let schedule = this.scheduleService.get();
-                this.days = schedule.days
+                else {
+                    let schedule = this.scheduleService.get();
+                    this.days = schedule.days;
+                }
 
                 this.loading = false;
             }

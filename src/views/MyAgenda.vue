@@ -35,11 +35,12 @@
             {
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
+                            .then(schedule => this.days = schedule.days.filter(day => day.title.includes('Day')))
                 }
-
-                let schedule = this.scheduleService.get();
-
-                this.days = schedule.days.filter(day => day.title.includes('Day'));
+                else {
+                    let schedule = this.scheduleService.get();
+                    this.days = schedule.days.filter(day => day.title.includes('Day'));
+                }
 
                 this.loading = false;
             },
@@ -78,8 +79,7 @@
                 
                 let allEventsOfCurrentDay = [].concat.apply([], currentDaySchedule.rooms.map(room => room.events));
 
-                let bookmarkedEventsOfCurrentDay = allEventsOfCurrentDay
-                                                    .filter(event => event.type.includes('Talk') && bookmarkedEvents.includes(event.id));
+                let bookmarkedEventsOfCurrentDay = allEventsOfCurrentDay.filter(event => bookmarkedEvents.includes(event.id));
                 
                 let sortedBookmarkedEventsOfCurrentDay = bookmarkedEventsOfCurrentDay.sort(this.sortByTime);
 

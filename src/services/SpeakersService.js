@@ -5,9 +5,15 @@ function SpeakersService ()
 
     this.fetch = function()
     {
-        fetch(apiEndpoint)
+        return fetch(apiEndpoint)
             .then(response => response.json())
-            .then(datas => localStorage.setItem(localStorageKey, JSON.stringify(datas.speakers)))
+            .then(datas => {
+                const speakers = datas.speakers;
+
+                localStorage.setItem(localStorageKey, JSON.stringify(speakers));
+
+                return speakers;
+            })
     }
 
     this.get = function () {

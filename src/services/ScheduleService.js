@@ -5,9 +5,13 @@ function ScheduleService ()
 
     this.fetch = function()
     {
-        fetch(apiEndpoint)
+        return fetch(apiEndpoint)
             .then(response => response.json())
-            .then(schedule => localStorage.setItem(localStorageKey, JSON.stringify(schedule)))
+            .then(schedule => {
+                localStorage.setItem(localStorageKey, JSON.stringify(schedule));
+
+                return schedule;
+            })
     }
 
     this.get = function () {

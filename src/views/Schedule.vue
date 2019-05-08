@@ -32,11 +32,12 @@
             {
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
+                            .then(schedule => this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber))
                 }
-
-                let schedule = this.scheduleService.get();
-
-                this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber);
+                else {
+                    let schedule = this.scheduleService.get();
+                    this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber)
+                }
 
                 this.loading = false;
             }
@@ -59,6 +60,7 @@
             Room
         },
         beforeMount() {
+            this.$forceUpdate();
             this.fetchDatas();
         }
     }

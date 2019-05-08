@@ -26,9 +26,12 @@
             {
                 if(navigator.onLine) {
                     this.speakersService.fetch()
+                            .then(speakers => this.speakers = speakers);
                 }
-
-                this.speakers = this.speakersService.get()
+                else {
+                    let speakers = this.speakersService.get();
+                    this.speakers = speakers;
+                }
 
                 this.loading = false;
             }
