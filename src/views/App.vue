@@ -2,7 +2,7 @@
     <div>
         <router-view></router-view>
 
-        <div class="fixed-action-btn">
+        <div v-show="false" class="fixed-action-btn">
             <a class="btn-floating btn-large green waves-effect waves-light btn modal-trigger" href="#contactModal">
                 <i class="large material-icons">mail</i>
             </a>

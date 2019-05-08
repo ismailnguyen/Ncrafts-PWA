@@ -3,20 +3,7 @@
         <ScheduleMenu :title="currentDaySchedule.title" :rooms="currentDaySchedule.rooms" />
 
         <div class="container">
-            <div class="switch right">
-                <label>
-                    All
-                    <input type="checkbox" v-model="isMyAgendaEnabled">
-                    <span class="lever"></span>
-                    My agenda
-                </label>
-            </div>
-
-            <Room :events="currentRoomEvents" :isMyAgendaEnabled="isMyAgendaEnabled" />
-        </div>
-
-        <div id="feedbackModal" class="modal bottom-sheet">
-            <FeedbackModal />
+            <Room :events="currentRoomEvents" />
         </div>
 
         <div class="progress" v-show="loading">
@@ -29,7 +16,6 @@
     import ScheduleService from '../services/ScheduleService'
     import ScheduleMenu from '../components/ScheduleMenu.vue'
     import Room from '../components/Room.vue'
-    import FeedbackModal from '../components/FeedbackModal.vue'
     
     export default {
         data()
@@ -37,7 +23,6 @@
             return {
                 dayNumber: this.$route.params.dayNumber,
                 currentDaySchedule: {},
-                isMyAgendaEnabled: false,
                 loading: true
             }
         },
@@ -76,21 +61,10 @@
         },
         components: {
             ScheduleMenu,
-            Room,
-            FeedbackModal
+            Room
         },
         beforeMount() {
             this.fetchDatas();
-        },
-        mounted() {
-            this.isMyAgendaEnabled = JSON.parse(localStorage.getItem('myAgendaEnabled')) || false;
-        },
-        watch: {
-            isMyAgendaEnabled: function (newValue, oldValue) {
-                this.isMyAgendaEnabled = newValue;
-
-                localStorage.setItem('myAgendaEnabled', newValue);
-            }
         }
     }
 </script>
@@ -98,5 +72,6 @@
 <style>
     div.container {
         padding-top: 120px;
+        padding-bottom: 60px;
     }
 </style>

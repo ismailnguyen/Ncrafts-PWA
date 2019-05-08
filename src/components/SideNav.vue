@@ -5,7 +5,12 @@
             <a href="">NewCrafts 2019</a>
         </li>
 
-        <li><a href="/">Home</a></li>
+        <li><a href="/#schedule">Schedule</a></li>
+        <li><a href="/MyAgenda">My agenda</a></li>
+
+        <li><div class="divider"></div></li>
+
+        <li><a href="/#speakers">Speakers</a></li>
 
         <li><div class="divider"></div></li>
 

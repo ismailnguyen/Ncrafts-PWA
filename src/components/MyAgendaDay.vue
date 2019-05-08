@@ -7,12 +7,12 @@
 </template>
 
 <script>
-    import Event from '../components/Event.vue'
+    import Event from '../components/MyAgendaEvent.vue'
 
     export default {
         props: ['events'],
         components: {
-            Event
+            MyAgendaEvent
         }
     }
 </script>

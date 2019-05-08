@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div v-else-if="isTalk && isVisible" class="event col s12">
+    <div v-else-if="isTalk" :id="event.id" class="event col s12">
         <div class="chip">
             {{ event.time }}
         </div>
@@ -45,7 +45,7 @@
     import showdown from 'showdown';
 
     export default {
-        props: ['event', 'isMyAgendaEnabled'],
+        props: ['event'],
         data()
         {
             return {
@@ -76,21 +76,19 @@
                 let markdownConverter = new showdown.Converter();
 
                 return markdownConverter.makeHtml(value);
+            },
+
+            fetchBookmark: function () {
+                let bookmark = JSON.parse(localStorage.getItem('bookmark')) || [];
+
+                this.isBookmarked = bookmark.includes(this.event.id);
             }
-        },
-        computed: {
-            isVisible: function () {
-                return !this.isMyAgendaEnabled
-                            || (this.isMyAgendaEnabled && this.isBookmarked);
-            }
-        },
-        filters: {
-            
         },
         mounted() {
-            let bookmark = JSON.parse(localStorage.getItem('bookmark')) || [];
-
-            this.isBookmarked = bookmark.includes(this.event.id);
+            this.fetchBookmark();
+        },
+        updated() {
+            this.fetchBookmark();
         }
     }
 </script>

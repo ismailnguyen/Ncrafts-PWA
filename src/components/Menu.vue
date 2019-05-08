@@ -1,8 +1,7 @@
 <template>
     <nav class="header nav-extended">
-        <div class="nav-wrapper ">
-            <a class="brand-logo center"><img src="assets/img/only_newcrafts_blanc.png" height="40"></a>
-            <a data-activates="slide-out" class="show-on-large button-collapse"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper">
+            <Header />
 
             <SideNav />
         </div>
@@ -17,10 +16,12 @@
 </template>
 
 <script>
+    import Header from '../components/Header.vue'
     import SideNav from '../components/SideNav.vue'
     
     export default {
         components: {
+            Header,
             SideNav
         }
     }

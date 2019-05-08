@@ -8,9 +8,9 @@
 
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
-                <li v-for="(room, index) in rooms" :key="index" class="tab" @click="openRoomView(index+1)">
-                    <a v-if="index == (currentRoomNumber-1)" class="active">{{ room.room }}</a>
-                    <a v-else>{{ room.room }}</a>
+                <li v-for="(day, index) in days" :key="index" class="tab" @click="openDayView(index+1)">
+                    <a v-if="index == (currentDayNumber)" class="active">{{ day.title }}</a>
+                    <a v-else>{{ day.title }}</a>
                 </li>
             </ul>
         </div>
@@ -22,11 +22,10 @@
     import SideNav from '../components/SideNav.vue'
 
     export default {
-        props: ['title', 'rooms'],
+        props: ['title', 'days'],
         data() {
             return {
                 currentDayNumber: this.$route.params.dayNumber,
-                currentRoomNumber: this.$route.params.roomNumber,
             }
         },
         components: {
@@ -34,8 +33,8 @@
             SideNav
         },
         methods: {
-            openRoomView: function (nextRoomNumber) {
-                this.$router.push({ name: 'ScheduleDay', params: { dayNumber: this.currentDayNumber, roomNumber: nextRoomNumber }});
+            openDayView: function (nextDayNumber) {
+                this.$router.push({ name: 'MyAgenda', params: { dayNumber: nextDayNumber }});
             }
         }
     }
