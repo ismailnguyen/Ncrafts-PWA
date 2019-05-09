@@ -52,8 +52,7 @@
             return {
                 bookmarkService: new BookmarkService(),
                 showDetails: false,
-                isBookmarked: false,
-                isBreak: this.event.type.includes('break') || this.event.type.includes('lunch')
+                isBookmarked: false
             }
         },
         methods: {
@@ -84,6 +83,11 @@
                 let bookmarks = this.bookmarkService.get();
 
                 this.isBookmarked = bookmarks.includes(this.event.id);
+            }
+        },
+        computed: {
+            isBreak: function () {
+                return this.event.type.includes('break') || this.event.type.includes('lunch');
             }
         },
         mounted() {

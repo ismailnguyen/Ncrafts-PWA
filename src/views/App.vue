@@ -1,35 +1,22 @@
 <template>
-    <div>
-        <router-view></router-view>
-
-        <div v-show="false" class="fixed-action-btn">
-            <a class="btn-floating btn-large green waves-effect waves-light btn modal-trigger" href="#contactModal">
-                <i class="large material-icons">mail</i>
-            </a>
-        </div>
-
-        <div id="contactModal" class="modal bottom-sheet">
-            <ContactModal />
-        </div>
-    </div>
+    <router-view></router-view>
 </template>
 
 <script>
-    import Menu from '../components/Menu.vue'
-    import ContactModal from '../components/ContactModal.vue'
-    
     export default {
-        components: {
-            ContactModal
-        },
         mounted() {
+            $('.tabs').tabs();
             $(".button-collapse").sideNav();
-            $('.modal').modal();
         }
     }
 </script>
 
 <style>
+    .secondary-background-color {
+        background: #39c8b7;
+        color: #fff;
+    }
+    
     nav {
         position: fixed;
         z-index: 9999;

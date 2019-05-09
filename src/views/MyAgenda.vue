@@ -24,7 +24,6 @@
             return {
                 scheduleService: new ScheduleService(),
                 bookmarkService: new BookmarkService(),
-                dayNumber: this.$route.params.dayNumber || 2,
                 days: [],
                 loading: true,
                 defaultDayNumber: 2
@@ -35,14 +34,16 @@
             {
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
-                            .then(schedule => this.days = schedule.days.filter(day => day.title.includes('Day')))
+                            .then(schedule => {
+                                this.days = schedule.days.filter(day => day.title.includes('Day'));
+                                this.loading = false;
+                            })
                 }
                 else {
                     let schedule = this.scheduleService.get();
                     this.days = schedule.days.filter(day => day.title.includes('Day'));
+                    this.loading = false;
                 }
-
-                this.loading = false;
             },
 
             removeDuplicateEvents: function (events) {
@@ -69,6 +70,10 @@
             }
         },
         computed: {
+            dayNumber: function () {
+                return this.$route.params.dayNumber || 2;
+            },
+
             currentDayBookmarkedEvents: function () {
                 let schedule = this.scheduleService.get();
                 let bookmarkedEvents = this.bookmarkService.get();
@@ -95,6 +100,10 @@
         beforeMount() {
             this.fetchDatas();
         },
+        mounted() {
+            $('.tabs').tabs();
+            $(".button-collapse").sideNav();
+        }
     }
 </script>
 

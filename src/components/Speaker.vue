@@ -33,6 +33,6 @@
 
                 return markdownConverter.makeHtml(value);
             }
-        },
+        }
     }
 </script>

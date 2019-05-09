@@ -1,17 +1,32 @@
 <template>
-    <div class="row">
-        <div v-for="(day, index) in days" :key="index" class="card rounded">
-            <div class="card-content">
-                <a :href="'/Schedule/' + day.day + '/1'">
-                    <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
-                    <p><a>{{ day.date }}</a></p>
-                </a>
+    <div>
+        <Menu />
+    
+        <div id="schedule" class="container">
+            <div class="row">
+                <div v-for="(day, index) in days" :key="index" class="card rounded">
+                    <div class="card-content">
+                        <router-link :to="'/Schedule/' + day.day + '/1'">
+                            <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
+                            <p><a>{{ day.date }}</a></p>
+                        </router-link>
+                    </div>
+                </div>
+
+                <div class="card rounded secondary-background-color">
+                    <div class="card-content">
+                        <router-link to="/MyAgenda">
+                            <span class="card-title activator secondary-background-color">My agenda</span>
+                        </router-link>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import Menu from '../components/Menu.vue'
     import ScheduleService from '../services/ScheduleService'
     
     export default {
@@ -23,29 +38,39 @@
                 loading: true
             }
         },
+        components: {
+            Menu,
+        },
         methods: {
             fetchDatas: function ()
             {
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
-                            .then(schedule => this.days = schedule.days);
+                            .then(schedule => {
+                                this.days = schedule.days;
+                                this.loading = false;
+                            });
                 }
                 else {
                     let schedule = this.scheduleService.get();
                     this.days = schedule.days;
+                    this.loading = false;
                 }
-
-                this.loading = false;
             }
         },
         mounted() {
-            this.fetchDatas();    
+            this.fetchDatas();
+            $('.tabs').tabs();
+            $(".button-collapse").sideNav();
         }
     }
 </script>
 
 <style scoped>
+    div#schedule {
+        padding-top: 20vh;
+    },
     div.card {
-        margin-bottom: 50px;
+        margin-bottom: 60px;
     }
 </style>

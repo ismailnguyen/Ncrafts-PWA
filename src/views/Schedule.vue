@@ -22,7 +22,6 @@
         {
             return {
                 scheduleService: new ScheduleService(),
-                dayNumber: this.$route.params.dayNumber,
                 currentDaySchedule: {},
                 loading: true
             }
@@ -32,17 +31,23 @@
             {
                 if(navigator.onLine) {
                     this.scheduleService.fetch()
-                            .then(schedule => this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber))
+                            .then(schedule => {
+                                this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber);
+                                this.loading = false;
+                            })
                 }
                 else {
                     let schedule = this.scheduleService.get();
                     this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber)
+                    this.loading = false;
                 }
-
-                this.loading = false;
             }
         },
         computed: {
+            dayNumber: function () {
+                return this.$route.params.dayNumber;
+            },
+
             currentRoomEvents: function () {
                 let schedule = this.scheduleService.get();
 
@@ -60,8 +65,11 @@
             Room
         },
         beforeMount() {
-            this.$forceUpdate();
             this.fetchDatas();
+        },
+        mounted() {
+            $('.tabs').tabs();
+            $(".button-collapse").sideNav();
         }
     }
 </script>

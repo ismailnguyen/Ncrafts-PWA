@@ -4,6 +4,10 @@
             {{ event.time }}
         </div>
 
+        <div class="chip float right secondary-background-color">
+            {{ event.room }}
+        </div>
+
         <div class="card rounded" @click="showDetails = !showDetails">
             <div class="card-image waves-effect waves-block waves-light rounded">
                 <img class="activator" :src="'//ncrafts.io' + event.speakerPhoto">
