@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isBreak" class="event col s12">
+    <div v-if="isBreak" class="event col s12 break-card">
         <div class="chip">
             {{ event.time }}
         </div>
@@ -98,3 +98,11 @@
         }
     }
 </script>
+
+<style scoped>
+    .break-card {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+</style>
