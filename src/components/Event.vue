@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isBreak" class="event col s12 break-card">
+    <div v-if="isBreak" class="event col s12 m6 l4 break-card">
         <div class="chip">
             {{ event.time }}
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div v-else-if="!isBreak" :id="event.id" class="event col s12">
+    <div v-else-if="!isBreak" :id="event.id" class="event col s12 m6 l4">
         <div class="chip">
             {{ event.time }}
         </div>
@@ -35,7 +35,7 @@
             </div>
 
             <div class="card-action">
-                <a href="#feedbackModal" class="modal-trigger">Leave feedback</a>
+                <a :href="event.feedbackUrl" target="_blank">Leave feedback</a>
             </div>
         </div>
     </div>
