@@ -1,5 +1,5 @@
 <template>
-    <div :id="event.id" class="event col s12">
+    <div :id="event.id" class="event col s12 m6 l4">
         <div class="chip">
             {{ event.time }}
         </div>
