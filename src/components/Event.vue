@@ -5,9 +5,11 @@
         </div>
 
         <div class="card circle">
-            <div class="card-content">
+            <div class="card-content center">
                 <span class="card-title grey-text text-darken-4">
-                    {{event.title}}
+                    <blockquote>
+                        {{event.title}}
+                    </blockquote>
                 </span>
             </div>
         </div>
@@ -105,4 +107,7 @@
         margin-bottom: 40px;
     }
 
+    blockquote {
+        border-left: 5px solid #39c8b7;
+    }
 </style>
