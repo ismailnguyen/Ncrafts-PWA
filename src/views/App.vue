@@ -29,13 +29,14 @@
     nav a.button-collapse {
         color: #39c8b7;
     }
-    
+
     a {
         color: #39c8b7;
     }
 
     .tabs.tabs-transparent .tab a:hover, .tabs.tabs-transparent .tab a.active {
         color: #39c8b7;
+        border-bottom: 2px solid #39c8b7;
     }
 
     .tabs.tabs-transparent .indicator {
