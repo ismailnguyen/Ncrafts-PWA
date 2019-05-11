@@ -12,6 +12,10 @@
 </script>
 
 <style>
+    html {
+        zoom: reset;
+    }
+
     .secondary-background-color {
         background: #39c8b7;
         color: #fff;
@@ -41,6 +45,11 @@
 
     .tabs.tabs-transparent .indicator {
         background-color: #39c8b7;
+    }
+
+    .container .row {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .brand-logo {
