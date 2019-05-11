@@ -7,6 +7,7 @@ import ScheduleOverview from '../views/ScheduleOverview.vue'
 import Schedule from '../views/Schedule.vue'
 import Speakers from '../views/Speakers.vue'
 import MyAgenda from '../views/MyAgenda.vue'
+import QrCodeReader from '../views/QrCodeReader.vue'
 
 const router = new VueRouter({
     mode: 'history',
@@ -35,6 +36,11 @@ const router = new VueRouter({
             name: 'MyAgenda',
             path: '/MyAgenda/:dayNumber?',
             component: MyAgenda
+        },
+        {
+            name: 'QrCodeReader',
+            path: '/QrCodeReader',
+            component: QrCodeReader
         }
     ]
 });
