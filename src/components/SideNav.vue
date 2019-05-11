@@ -13,6 +13,10 @@
 
         <li><div class="divider"></div></li>
 
+        <li><a href="/QrCodeReader">QR Code Reader</a></li>
+
+        <li><div class="divider"></div></li>
+
         <li><a class="subheader">Follow us</a></li>
         <li><a href="http://ncrafts.io/" target="_blank">NCrafts.io</a></li>
         <li><a href="https://twitter.com/ncraftsConf" target="_blank">Twitter</a></li>

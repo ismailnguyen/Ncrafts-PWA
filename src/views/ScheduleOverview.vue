@@ -4,7 +4,7 @@
     
         <div id="schedule" class="container">
             <div class="row">
-                <div v-for="(day, index) in days" :key="index" class="card rounded">
+                <div v-for="(day, index) in days" :key="index" class="card">
                     <div class="card-content">
                         <router-link :to="'/Schedule/' + day.day + '/1'">
                             <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
@@ -13,7 +13,7 @@
                     </div>
                 </div>
 
-                <div class="card rounded secondary-background-color">
+                <div class="card secondary-background-color">
                     <div class="card-content">
                         <router-link to="/MyAgenda">
                             <span class="card-title activator secondary-background-color">My agenda</span>
@@ -65,12 +65,3 @@
         }
     }
 </script>
-
-<style scoped>
-    div#schedule {
-        padding-top: 20vh;
-    },
-    div.card {
-        margin-bottom: 60px;
-    }
-</style>
