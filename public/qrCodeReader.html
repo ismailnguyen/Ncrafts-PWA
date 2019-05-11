@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QR Code reader</title>
+    <script type="text/javascript" src="jsQRScan.1.0.min.js"></script>
+  </head>
+  <body>
+    <video id="camera"></video>
+    <script type="text/javascript">
+      scanner = new jsQRScan({
+		'id': 'camera',
+		'width': 320,
+		'height': 320,
+		'callbackSuccess': console.log,
+		'callbackEnd': console.log,
+		'scanMaxDuration': 20000,
+		'scanInterval': 1000
+	});
+    </script>
+  </body>
+</html>
