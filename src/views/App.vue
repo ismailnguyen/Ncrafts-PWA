@@ -28,6 +28,7 @@
 
     nav.header {
         background-color: #262627eb;
+        box-shadow: 0 12px 45px -8px #2626279c;
     }
 
     nav a.button-collapse {
