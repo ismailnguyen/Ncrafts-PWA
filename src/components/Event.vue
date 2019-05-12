@@ -34,10 +34,25 @@
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ event.title }}<i class="material-icons right">close</i></span>
                 <p v-html="formatMarkdown(event.description)"></p>
+
+                 <div v-if="event.tags" class="tags-container">
+                    <div v-for="(tag, index) in event.tags" :key="index" class="chip">
+                        {{ tag }}
+                    </div>
+                 </div>
             </div>
 
             <div class="card-action">
-                <a :href="event.feedbackUrl" target="_blank">Leave feedback</a>
+                 <a :href="event.feedbackUrl" target="_blank" class="waves-effect waves-light btn-small">
+                    <i class="material-icons left">feedback</i>
+                    Leave feedback
+                </a>
+            </div>
+
+            <div v-if="event.tags" class="card-action">
+                <div v-if="event.tags" v-for="(tag, index) in event.tags" :key="index" class="chip">
+                    {{ tag }}
+                </div>
             </div>
         </div>
     </div>
@@ -109,5 +124,9 @@
 
     blockquote {
         border-left: 5px solid #39c8b7;
+    }
+
+    .tags-container {
+        padding-top: 20px;
     }
 </style>
