@@ -1,7 +1,7 @@
 <template>
     <ul id="slide-out" class="side-nav">
-        <li class="side-nav-header">
-            <img src="/assets/img/logo.png" height="200">
+        <li class="side-nav-header center">
+            <img src="/assets/img/logo.png" height="100">
         </li>
 
         <li><a href="/MyAgenda" :class="isCurrentPath('/MyAgenda') ? 'secondary-background-color': ''">My agenda</a></li>
@@ -61,8 +61,30 @@
 
 <style scoped>
     .side-nav {
-        background-color: #262627;
+        background-color: #26262733;
+        padding-bottom: 140px;
+        box-shadow: 0 20px 50px rgba(85, 85, 85, 0.8);
     }
+  
+  .side-nav::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: inherit;
+    filter: contrast(1) blur(5px) grayscale(1) brightness(1);
+    margin: -10px;
+    -webkit-filter: blur(10px);
+          filter: blur(10px);
+  }
+
+  .side-nav::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: #262627cc;
+  }
 
     .side-nav li>a {
         color: rgba(255, 255, 255 ,0.87);
@@ -73,7 +95,7 @@
     }
 
     .side-nav-header {
-        margin: 60px;
+        margin: 40px;
     }
 
     li.side-nav-header>a {
