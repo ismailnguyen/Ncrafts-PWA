@@ -1,5 +1,5 @@
 <template>
-    <div class="col s12 m6" @click="showDetails = !showDetails">
+    <div class="speaker col s12 m6" @click="showDetails = !showDetails">
         <div class="card rounded">
             <div class="card-image waves-effect waves-block waves-light rounded">
                 <img class="activator" :src="'//ncrafts.io' + speaker.image">
@@ -36,3 +36,10 @@
         }
     }
 </script>
+
+<style scoped>
+    .speaker {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+</style>
