@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div v-if="introAlreadyShown">
         <Menu />
     
         <div id="schedule" class="container">
             <div class="row">
                 <div v-for="(day, index) in days" :key="index" class="card">
                     <div class="card-content">
-                        <router-link :to="'/Schedule/' + day.day + '/1'">
+                        <router-link :to="'/Schedule/' + day.day + '/0'">
                             <span class="card-title activator grey-text text-darken-4">{{ day.title }}</span>
                             <p><a>{{ day.date }}</a></p>
                         </router-link>
@@ -23,9 +23,14 @@
             </div>
         </div>
     </div>
+
+    <div v-else>
+        <Intro />
+    </div>
 </template>
 
 <script>
+    import Intro from '../views/Intro.vue'
     import Menu from '../components/Menu.vue'
     import ScheduleService from '../services/ScheduleService'
     
@@ -35,11 +40,13 @@
             return {
                 scheduleService: new ScheduleService(),
                 days: null,
-                loading: true
+                loading: true,
+                introAlreadyShown: true
             }
         },
         components: {
-            Menu,
+            Intro,
+            Menu
         },
         methods: {
             fetchDatas: function ()
@@ -59,6 +66,8 @@
             }
         },
         mounted() {
+            this.introAlreadyShown = JSON.parse(localStorage.getItem('introAlreadyShown'))
+
             this.fetchDatas();
             $('.tabs').tabs();
             $(".button-collapse").sideNav();
