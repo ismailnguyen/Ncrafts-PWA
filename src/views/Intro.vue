@@ -9,16 +9,16 @@
             <div class="card-reveal">
                 <span @click="closeIntro()" class="card-title grey-text text-darken-4">Welcome aboard !<i class="material-icons right">close</i></span>
                 <p>
-                    -- I don't know what to put here --
+                    - Access and build your full agenda with <b>sessions</b> and <b>speakers</b> details to help you find the right sessions for you
                 </p>
                 <p>
-                    -- I don't know what to put here --
+                    - To build your agenda you can <b>bookmark</b> your preferred sessions
                 </p>
                 <p>
-                    -- I don't know what to put here --
+                    - Once built, you can have access to your agenda <b>offline!</b>, simply go to [<b>my agenda</b>]
                 </p>
                 <p>
-                    -- I don't know what to put here --
+                    - Share your thoughts with the speaker and give your <b>feedback</b>
                 </p>
             </div>
             <div class="card-action">
@@ -34,7 +34,7 @@
         methods: {
             closeIntro: function () {
                 localStorage.setItem('introAlreadyShown', true);
-                location.reload();
+                this.$router.push({ name: 'ScheduleOverview'});
             }
         }
     }
