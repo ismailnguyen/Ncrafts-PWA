@@ -1,5 +1,5 @@
 <template>
-    <div v-if="introAlreadyShown">
+    <div>
         <Menu />
     
         <div id="schedule" class="container">
@@ -23,14 +23,9 @@
             </div>
         </div>
     </div>
-
-    <div v-else>
-        <Intro />
-    </div>
 </template>
 
 <script>
-    import Intro from '../views/Intro.vue'
     import Menu from '../components/Menu.vue'
     import ScheduleService from '../services/ScheduleService'
     
@@ -41,11 +36,9 @@
                 scheduleService: new ScheduleService(),
                 days: null,
                 loading: true,
-                introAlreadyShown: true
             }
         },
         components: {
-            Intro,
             Menu
         },
         methods: {
@@ -66,8 +59,6 @@
             }
         },
         mounted() {
-            this.introAlreadyShown = JSON.parse(localStorage.getItem('introAlreadyShown'))
-
             this.fetchDatas();
             $('.tabs').tabs();
             $(".button-collapse").sideNav();
