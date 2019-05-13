@@ -22,7 +22,6 @@ const PRECACHE_URLS = [
   '/',
   'index.html',
   './', // Alias for index.html
-  'styles.css',
   '/dist/build.js'
 ];
 
