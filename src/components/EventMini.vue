@@ -28,8 +28,15 @@
                 <a class="btn-floating halfway-fab waves-effect waves-light red" @click="bookmark()">
                     <i class="material-icons">{{ isBookmarked ? 'bookmark' : 'bookmark_border' }}</i>
                 </a>
-                <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
-                <p><a>{{event.speakerName}}</a></p>
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img :src="'//ncrafts.io' + event.speakerPhoto" alt="" class="circle responsive-img">
+                    </div>
+                    <div class="col s10">
+                        <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
+                        <p><a>{{event.speakerName}}</a></p>
+                    </div>
+                </div>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ event.title }}<i class="material-icons right">close</i></span>
