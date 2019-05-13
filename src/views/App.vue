@@ -7,6 +7,12 @@
         mounted() {
             $('.tabs').tabs();
             $(".button-collapse").sideNav();
+
+            let introAlreadyShown = JSON.parse(localStorage.getItem('introAlreadyShown'));
+
+            if (!introAlreadyShown) {
+                this.$router.push({ name: 'Intro'});
+            }
         }
     }
 </script>
