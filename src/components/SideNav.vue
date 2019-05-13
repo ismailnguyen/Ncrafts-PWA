@@ -1,7 +1,7 @@
 <template>
     <ul id="slide-out" class="side-nav">
         <li class="side-nav-header center">
-            <img src="/assets/img/logo.png" height="100">
+            <img src="/assets/img/logo.png" height="70">
         </li>
 
         <li><div class="divider"></div></li>

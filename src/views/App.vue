@@ -23,8 +23,8 @@
     }
 
     .secondary-background-color {
-        background: #39c8b7;
-        color: #fff;
+        background: #39c8b7 !important;
+        color: #fff !important;
     }
     
     nav {

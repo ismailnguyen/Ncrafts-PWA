@@ -26,7 +26,7 @@
         "type": "image/png"
       }, {
         "src": "assets/img/logo.png",
-        "sizes": "521x512",
+        "sizes": "512x512",
         "type": "image/png"
       }]
 }
