@@ -4,7 +4,7 @@
             {{ event.time }}
         </div>
 
-        <div class="card circle">
+        <div class="card rounded">
             <div class="card-content center">
                 <span class="card-title grey-text text-darken-4">
                     <blockquote>
@@ -42,17 +42,17 @@
                  </div>
             </div>
 
-            <div class="card-action">
+            <div v-if="event.tags" class="card-action rounded-bottom">
+                <div v-for="(tag, index) in event.tags" :key="index" class="chip event-tag">
+                    {{ tag }}
+                </div>
+            </div>
+
+            <div class="card-action rounded-bottom">
                  <a :href="event.feedbackUrl" target="_blank" class="waves-effect waves-light btn-small">
                     <i class="material-icons left">feedback</i>
                     Leave feedback
                 </a>
-            </div>
-
-            <div v-if="event.tags" class="card-action">
-                <div v-if="event.tags" v-for="(tag, index) in event.tags" :key="index" class="chip">
-                    {{ tag }}
-                </div>
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@
 </script>
 
 <style scoped>
-    .break-card {
+    .event{
         margin-top: 40px;
         margin-bottom: 40px;
     }
@@ -128,5 +128,10 @@
 
     .tags-container {
         padding-top: 20px;
+    }
+
+    .event-tag {
+        height: 24px;
+        line-height: 24px;
     }
 </style>
