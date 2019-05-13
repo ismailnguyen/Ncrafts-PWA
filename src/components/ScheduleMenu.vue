@@ -8,6 +8,11 @@
 
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
+                <li class="tab" @click="openRoomView(0)">
+                    <a v-if="currentRoomNumber == 0" class="active">All</a>
+                    <a v-else>All</a>
+                </li>
+
                 <li v-for="(room, index) in rooms" :key="index" class="tab" @click="openRoomView(index+1)">
                     <a v-if="index == (currentRoomNumber-1)" class="active">{{ room.room }}</a>
                     <a v-else>{{ room.room }}</a>
@@ -36,9 +41,16 @@
             currentDayNumber: function () {
                 return this.$route.params.dayNumber;
             },
+
             currentRoomNumber: function () {
                 return this.$route.params.roomNumber;
             }
         }
     }
 </script>
+
+<style>
+    .indicator {
+        display: none !important; 
+    }
+</style>
