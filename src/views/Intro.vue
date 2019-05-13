@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="event col s12 m6 l4">
+            <div class="event col s12">
                 <div class="chip">
                     NCrafts 2019
                 </div>
