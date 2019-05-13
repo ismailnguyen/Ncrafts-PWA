@@ -124,7 +124,7 @@
     }
 
     .side-nav-header {
-        margin: 40px;
+        margin: 15px;
     }
 
 </style>
