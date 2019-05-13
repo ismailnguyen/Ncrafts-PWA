@@ -24,13 +24,8 @@ const router = new VueRouter({
         },
         {
             name: 'ScheduleDay',
-            path: '/Schedule/:dayNumber/:roomNumber',
+            path: '/Schedule/:dayNumber/:roomNumber?',
             component: Schedule,
-        },
-        {
-            name: 'Speakers',
-            path: '/Speakers',
-            component: Speakers 
         },
         {
             name: 'MyAgenda',
