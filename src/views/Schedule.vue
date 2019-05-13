@@ -2,7 +2,11 @@
     <div>
         <ScheduleMenu :title="currentDaySchedule.title" :rooms="currentDaySchedule.rooms" />
 
-        <div class="container">
+        <div v-if="currentRoomNumber == 0" class="container">
+            <RoomAllEvents :events="currentDayEvents" />
+        </div>
+
+        <div v-else class="container">
             <Room :events="currentRoomEvents" />
         </div>
 
@@ -15,6 +19,7 @@
 <script>
     import ScheduleService from '../services/ScheduleService'
     import ScheduleMenu from '../components/ScheduleMenu.vue'
+    import RoomAllEvents from '../components/RoomAllEvents.vue'
     import Room from '../components/Room.vue'
     
     export default {
@@ -41,6 +46,29 @@
                     this.currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber)
                     this.loading = false;
                 }
+            },
+
+            removeDuplicateEvents: function (events) {
+                return events.map(e => e.title)
+
+                // store the keys of the unique objects
+                .map((e, i, final) => final.indexOf(e) === i && i)
+
+                // eliminate the dead keys & store unique objects
+                .filter(e => events[e]).map(e => events[e]);
+            },
+
+            sortByTime: function (event1, event2) {
+                let event1Time = Number(event1.time.split(':')[0])
+                let event2Time = Number(event2.time.split(':')[0])
+
+                if (event1Time < event2Time){
+                    return -1;
+                }
+                if (event1Time > event2Time){
+                    return 1;
+                }
+                return 0;
             }
         },
         computed: {
@@ -48,20 +76,34 @@
                 return this.$route.params.dayNumber;
             },
 
+            currentRoomNumber: function () {
+                return this.$route.params.roomNumber;
+            },
+
+            currentDayEvents: function () {
+                let schedule = this.scheduleService.get();
+
+                let currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber);
+
+                let sortedEvents = currentDaySchedule.rooms.map(room => room.events).flat().sort(this.sortByTime);
+                let sortedUniquesEvents = this.removeDuplicateEvents(sortedEvents);
+
+                return sortedUniquesEvents;
+            },
+
             currentRoomEvents: function () {
                 let schedule = this.scheduleService.get();
 
-                let dayNumber = this.$route.params.dayNumber;
-                let roomNumber = this.$route.params.roomNumber;
+                let currentDaySchedule = schedule.days.find(d => d.day == this.dayNumber);
 
-                let currentDaySchedule = schedule.days.find(d => d.day == dayNumber);
-                let currentRoom = currentDaySchedule.rooms[roomNumber-1];
+                let currentRoom = currentDaySchedule.rooms[this.currentRoomNumber-1];
 
                 return currentRoom.events;
             }
         },
         components: {
             ScheduleMenu,
+            RoomAllEvents,
             Room
         },
         beforeMount() {
