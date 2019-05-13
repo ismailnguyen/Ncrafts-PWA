@@ -61,17 +61,23 @@
         padding-top: 120px;
     }
 
-    div.card {
-        margin-bottom: 40px;
-    }
-
     div.circle {
         border-radius: 50px;
     }
 
-    div.rounded {
-        border-radius: 10px;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    .rounded {
+        border-radius: 20px;
+        box-shadow: 0 2px 43px -4px rgba(0,0,0,.19);
+    }
+
+    .rounded-top {
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+    }
+
+    .rounded-bottom {
+        border-bottom-right-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
     }
 
     div#schedule {
@@ -80,6 +86,6 @@
 
     div#schedule>.row>div.card {
         margin: -8px 0;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        box-shadow: 0 2px 43px -4px rgba(0,0,0,.19);
     }
 </style>
