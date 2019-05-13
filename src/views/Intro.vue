@@ -9,7 +9,7 @@
             <div class="card-reveal">
                 <span @click="closeIntro()" class="card-title grey-text text-darken-4">Welcome aboard !<i class="material-icons right">close</i></span>
                 <p>
-                    - Access and build your full agenda with <b>sessions</b> and <b>speakers</b> details to help you find the right sessions for you
+                    - Access and build your full agenda with <b>session</b> and <b>speaker</b> details to help you find the right sessions for you
                 </p>
                 <p>
                     - To build your agenda you can <b>bookmark</b> your preferred sessions
