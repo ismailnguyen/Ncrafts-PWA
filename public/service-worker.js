@@ -6,7 +6,7 @@ const precacheFiles = [
       '/assets/css/materialize.min.css',
       '/dist/build.js',
       '/assets/js/jquery-3.3.1.min.js',
-      '/assets/assets/js/materialize.min.js',
+      '/assets/js/materialize.min.js',
       '/assets/js/smallchat.min.js'
 ];
 
