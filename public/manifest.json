@@ -1,8 +1,8 @@
 {
     "dir": "ltr",
     "lang": "en",
-    "name": "NewCrafts 2019",
-    "short_name": "NewCrafts",
+    "name": "NewCrafts",
+    "short_name": "ncrafts",
     "description": "NewCrafts Paris the 16 & 17 May, an ephemeral learning ground for professional developers who care for quality code and bettering their practices.",
     "scope": "/",
     "start_url": "/",
