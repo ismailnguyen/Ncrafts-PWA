@@ -5,7 +5,7 @@
     "short_name": "NewCrafts",
     "description": "NewCrafts Paris the 16 & 17 May, an ephemeral learning ground for professional developers who care for quality code and bettering their practices.",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/index.html",
     "display": "standalone",
     "orientation": "any",
     "theme_color": "#262627",
