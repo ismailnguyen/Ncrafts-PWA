@@ -11,7 +11,7 @@
             let introAlreadyShown = JSON.parse(localStorage.getItem('introAlreadyShown'));
 
             if (!introAlreadyShown) {
-                //this.$router.push({ name: 'Intro'});
+                this.$router.push({ name: 'Intro'});
             }
         }
     }

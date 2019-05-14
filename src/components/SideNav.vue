@@ -5,15 +5,15 @@
         </li>
 
         <li><div class="divider"></div></li>
-        <li><a href="/MyAgenda" :class="isCurrentPath('/MyAgenda') ? 'secondary-background-color rounded': 'rounded'">My agenda</a></li>
+        <li><a href="/MyAgenda/1" :class="isCurrentRoute('MyAgenda') ? 'secondary-background-color rounded': 'rounded'">My agenda</a></li>
         <li><div class="divider"></div></li>
-        <li><a href="/" :class="isCurrentPath('/') ? 'secondary-background-color rounded': 'rounded'">Schedule</a></li>
+        <li><a href="/" :class="isCurrentRoute('Schedule') ? 'secondary-background-color rounded': 'rounded'">Schedule</a></li>
 
         <li><div class="divider"></div></li>
-        <li><a href="/Speakers" :class="isCurrentPath('/Speakers') ? 'secondary-background-color rounded': 'rounded'">Speakers</a></li>
+        <li><a href="/Speakers" :class="isCurrentRoute('Speakers') ? 'secondary-background-color rounded': 'rounded'">Speakers</a></li>
 
         <li><div class="divider"></div></li>
-        <li><a href="/QrCodeReader" :class="isCurrentPath('/QrCodeReader') ? 'secondary-background-color rounded': 'rounded'">QR Code Reader</a></li>
+        <li><a href="/QrCodeReader" :class="isCurrentRoute('QrCodeReader') ? 'secondary-background-color rounded': 'rounded'">QR Code Reader</a></li>
 
         <li><div class="divider"></div></li>
         <li><a href="https://ncrafts.io/" target="_blank" class="rounded">NCrafts.io</a></li>
@@ -22,7 +22,7 @@
         <li><a href="https://videos.ncrafts.io/" target="_blank" class="rounded">Videos</a></li>
 
         <li><div class="divider"></div></li>
-        <li><a href="/Intro" :class="isCurrentPath('/Intro') ? 'secondary-background-color rounded': 'rounded'">Help</a></li>
+        <li><a href="/Intro" :class="isCurrentRoute('Intro') ? 'secondary-background-color rounded': 'rounded'">Help</a></li>
 
         <li><div class="divider"></div></li>
         <li><a href="https://ncrafts.io/" class="rounded">Desktop version</a></li>
@@ -56,8 +56,8 @@
             EventMini,
         },
         methods: {
-            isCurrentPath: function (path) {
-                return this.$route.path === path;
+            isCurrentRoute: function (name) {
+                return this.$route.name.startsWith(name);
             }
         }
     }

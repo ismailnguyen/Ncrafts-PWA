@@ -26,7 +26,7 @@
                 bookmarkService: new BookmarkService(),
                 days: [],
                 loading: true,
-                defaultDayNumber: 2
+                defaultDayNumber: 1
             }
         },
         methods: {
@@ -71,16 +71,14 @@
         },
         computed: {
             dayNumber: function () {
-                return this.$route.params.dayNumber || 2;
+                return this.$route.params.dayNumber || this.defaultDayNumber;
             },
 
             currentDayBookmarkedEvents: function () {
                 let schedule = this.scheduleService.get();
                 let bookmarkedEvents = this.bookmarkService.get();
 
-                let dayNumber = Number(this.$route.params.dayNumber) + 1 || this.defaultDayNumber;
-
-                let currentDaySchedule = schedule.days.find(d => d.day == dayNumber);
+                let currentDaySchedule = schedule.days.find(d => d.day == (Number(this.dayNumber) + 1));
                 
                 let allEventsOfCurrentDay = [].concat.apply([], currentDaySchedule.rooms.map(room => room.events));
 

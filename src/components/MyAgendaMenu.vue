@@ -34,7 +34,7 @@
         },
         computed: {
             currentDayNumber: function () {
-                return this.$route.params.dayNumber || 2;
+                return Number(this.$route.params.dayNumber) + 1;
             }
         }
     }
