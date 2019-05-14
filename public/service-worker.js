@@ -6,8 +6,7 @@ var precacheFiles = [
   '/assets/css/materialize.min.css',
   '/dist/build.js',
   '/assets/js/jquery-3.3.1.min.js',
-  '/assets/assets/js/materialize.min.js',
-  '/assets/js/smallchat.min.js'
+  '/assets/assets/js/materialize.min.js'
 ];
 
 //Install stage sets up the cache-array to configure pre-cache content
@@ -55,8 +54,8 @@ self.addEventListener('fetch', event => {
       }
 
 		event
-			  .respondWith(fromServer(fetchRequest)
-			  .catch(fromCache(fetchRequest)));
+			  .respondWith(fromCache(fetchRequest)
+			  .catch(fromServer(fetchRequest)));
 
       event.waitUntil(update(fetchRequest));
 });
