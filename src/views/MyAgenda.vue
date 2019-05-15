@@ -47,7 +47,7 @@
             },
 
             removeDuplicateEvents: function (events) {
-                return events.map(e => e.title + e.time)
+                return events.map(e => e.title)
 
                 // store the keys of the unique objects
                 .map((e, i, final) => final.indexOf(e) === i && i)
@@ -57,8 +57,8 @@
             },
 
             sortByTime: function (event1, event2) {
-                let event1Time = Number(event1.time.split(':')[0])
-                let event2Time = Number(event2.time.split(':')[0])
+                let event1Time = event1.time.split(' - ')[0];
+                let event2Time = event2.time.split(' - ')[0];
 
                 if (event1Time < event2Time){
                     return -1;
@@ -67,6 +67,10 @@
                     return 1;
                 }
                 return 0;
+            },
+
+            isBreak: function(event) {
+                return event.type.includes('break') || event.type.includes('lunch');
             }
         },
         computed: {
@@ -82,13 +86,29 @@
                 
                 let allEventsOfCurrentDay = [].concat.apply([], currentDaySchedule.rooms.map(room => room.events));
 
-                let bookmarkedEventsOfCurrentDay = allEventsOfCurrentDay.filter(event => bookmarkedEvents.includes(event.id));
+                let bookmarkedEventsOfCurrentDay = allEventsOfCurrentDay.filter(event => bookmarkedEvents.includes(event.id) || this.isBreak(event));
                 
                 let sortedBookmarkedEventsOfCurrentDay = bookmarkedEventsOfCurrentDay.sort(this.sortByTime);
 
                 let sortedUniquesBookmarkedEventsOfCurrentDay = this.removeDuplicateEvents(sortedBookmarkedEventsOfCurrentDay);
 
-                return sortedUniquesBookmarkedEventsOfCurrentDay;
+                let sortedBookmarkedsEventsWithUniqueTime = [];
+
+                for (var i=0; i<sortedUniquesBookmarkedEventsOfCurrentDay.length; i++) {
+                    let event = sortedUniquesBookmarkedEventsOfCurrentDay[i];
+
+                    if (!sortedBookmarkedsEventsWithUniqueTime.filter(e => e.type == 'time').map(e => e.time).includes(event.time))
+                    {
+                        sortedBookmarkedsEventsWithUniqueTime.push({
+                            type: 'time',
+                            time: event.time
+                        });
+                    }
+                    
+                    sortedBookmarkedsEventsWithUniqueTime.push(event);
+                }
+
+                return sortedBookmarkedsEventsWithUniqueTime;
             }
         },
         components: {

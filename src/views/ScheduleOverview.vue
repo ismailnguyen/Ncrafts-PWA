@@ -15,7 +15,7 @@
 
                 <div class="card secondary-background-color">
                     <div class="card-content">
-                        <router-link to="/MyAgenda">
+                        <router-link to="/MyAgenda/1">
                             <span class="card-title activator secondary-background-color">My agenda</span>
                         </router-link>
                     </div>

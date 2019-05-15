@@ -59,8 +59,8 @@
             },
 
             sortByTime: function (event1, event2) {
-                let event1Time = Number(event1.time.split(':')[0])
-                let event2Time = Number(event2.time.split(':')[0])
+                let event1Time = event1.time.split(' - ')[0];
+                let event2Time = event2.time.split(' - ')[0];
 
                 if (event1Time < event2Time){
                     return -1;

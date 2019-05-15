@@ -1,5 +1,11 @@
 <template>
-    <div v-if="isBreak" class="event col s12 m6 l4 break-card">
+    <div v-if="isTime" class="event-time col s12">
+        <div class="chip">
+            {{ event.time }}
+        </div>
+    </div>
+
+    <div v-else-if="isBreak" class="event col s12 break-card">
         <div class="card rounded">
             <div class="card-content center">
                 <span class="card-title grey-text text-darken-4">
@@ -11,14 +17,7 @@
         </div>
     </div>
 
-    <div v-else-if="isTime" class="event-time col s12 m6 l4">
-        <div class="chip">
-            {{ event.time }}
-        </div>
-    </div>
-
     <div v-else-if="!isBreak" :id="event.id" class="event col s12 m6 l4">
-        
         <div class="chip right secondary-background-color">
             {{ event.room }}
         </div>
@@ -34,7 +33,14 @@
                     </div>
                     <div class="col s10">
                         <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
-                        <p><a>{{event.speakerName}}</a></p>
+                        <p>
+                            <a :href="event.twitter" target="_blank">
+                                <div class="chip speaker-name-chip">
+                                    <img src="/assets/img/icon_twitter.png" alt="Twitter">
+                                    {{event.speakerName}}
+                                </div>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -47,6 +53,13 @@
                         {{ tag }}
                     </div>
                  </div>
+
+                 <a :href="event.twitter" target="_blank">
+                    <div class="chip speaker-name-chip">
+                        <img src="/assets/img/icon_twitter.png" alt="Twitter">
+                        @{{ twitterUsername }}
+                    </div>
+                </a>
             </div>
 
             <div class="card-action rounded-bottom">
@@ -107,8 +120,13 @@
             isBreak: function () {
                 return this.event.type.includes('break') || this.event.type.includes('lunch');
             },
+            
             isTime: function () {
                 return this.event.type.includes('time');
+            },
+
+            twitterUsername: function () {
+                return this.event.twitter.split('twitter.com/')[1];
             }
         },
         mounted() {
@@ -130,6 +148,10 @@
         margin-top: 35px;
     }
 
+    .card-content {
+        padding: 15px;
+    }
+
     .event-time {
         margin-top: 40px;
     }
@@ -146,5 +168,22 @@
     .chip {
         height: 24px;
         line-height: 24px;
+    }
+
+    .row.valign-wrapper {
+        margin-bottom: 0;
+    }
+
+    .speaker-name-chip {
+        padding-top: 10px;
+        background: #fff;
+        color: #39c8b7;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .speaker-name-chip>img {
+        height: 24px;
+        width: 24px;
     }
 </style>

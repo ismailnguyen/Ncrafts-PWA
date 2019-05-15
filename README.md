@@ -1,6 +1,7 @@
-# NCrafts 2018
+# { NewCrafts }
 
-> Progressive Web App for conferences
+> Progressive Web App for NewCrafts conference
+> Live : https://app.ncrafts.io/
 
 ## Build Setup
 

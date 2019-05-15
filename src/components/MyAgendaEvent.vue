@@ -1,23 +1,48 @@
 <template>
-    <div v-show="isVisible" :id="event.id" class="event col s12 m6 l4">
+    <div v-if="isTime" class="event-time col s12">
         <div class="chip">
             {{ event.time }}
         </div>
+    </div>
 
-        <div class="chip float right secondary-background-color">
+    <div v-else-if="isBreak" class="event col s12 break-card">
+        <div class="card rounded">
+            <div class="card-content center">
+                <span class="card-title grey-text text-darken-4">
+                    <blockquote>
+                        {{event.title}}
+                    </blockquote>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div v-else-if="!isBreak" v-show="isVisible" :id="event.id" class="event col s12 m6 l4">
+        <div class="chip right secondary-background-color">
             {{ event.room }}
         </div>
 
         <div class="card rounded" @click="showDetails = !showDetails">
-            <div class="card-image waves-effect waves-block waves-light rounded">
-                <img class="activator" :src="'//ncrafts.io' + event.speakerPhoto">
-            </div>
             <div class="card-content">
                 <a class="btn-floating halfway-fab waves-effect waves-light red" @click="removeBookmark()">
                     <i class="material-icons">bookmark</i>
                 </a>
-                <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
-                <p><a>{{event.speakerName}}</a></p>
+                <div class="row valign-wrapper">
+                    <div class="col s2">
+                        <img :src="'//ncrafts.io' + event.speakerPhoto" alt="" class="circle responsive-img">
+                    </div>
+                    <div class="col s10">
+                        <span class="card-title activator grey-text text-darken-4">{{event.title}}<i class="material-icons right">more_vert</i></span>
+                        <p>
+                            <a :href="event.twitter" target="_blank">
+                                <div class="chip speaker-name-chip">
+                                    <img src="/assets/img/icon_twitter.png" alt="Twitter">
+                                    {{event.speakerName}}
+                                </div>
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ event.title }}<i class="material-icons right">close</i></span>
@@ -28,12 +53,13 @@
                         {{ tag }}
                     </div>
                  </div>
-            </div>
 
-            <div v-if="event.tags" class="card-action rounded-bottom">
-                <div v-for="(tag, index) in event.tags" :key="index" class="chip event-tag">
-                    {{ tag }}
-                </div>
+                 <a :href="event.twitter" target="_blank">
+                    <div class="chip speaker-name-chip">
+                        <img src="/assets/img/icon_twitter.png" alt="Twitter">
+                        @{{ twitterUsername }}
+                    </div>
+                </a>
             </div>
 
             <div class="card-action rounded-bottom">
@@ -81,22 +107,69 @@
 
                 return markdownConverter.makeHtml(value);
             }
+        },
+        computed: {
+            isTime: function () {
+                return this.event.type.includes('time');
+            },
+
+            isBreak: function () {
+                return this.event.type.includes('break') || this.event.type.includes('lunch');
+            },
+
+            twitterUsername: function () {
+                return this.event.twitter.split('twitter.com/')[1];
+            }
         }
     }
 </script>
 
 <style scoped>
     .event{
-        margin-top: 40px;
+        margin-top: 10px;
         margin-bottom: 40px;
+    }
+
+    .card {
+        margin-top: 35px;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .event-time {
+        margin-top: 40px;
+    }
+
+    blockquote {
+        padding: 0;
+        border-left: 5px solid #39c8b7;
     }
 
     .tags-container {
         padding-top: 20px;
     }
 
-    .event-tag {
+    .chip {
         height: 24px;
         line-height: 24px;
+    }
+
+    .row.valign-wrapper {
+        margin-bottom: 0;
+    }
+    
+    .speaker-name-chip {
+        padding-top: 10px;
+        background: #fff;
+        color: #39c8b7;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .speaker-name-chip>img {
+        height: 24px;
+        width: 24px;
     }
 </style>

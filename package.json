@@ -1,23 +1,22 @@
 {
   "name": "ncrafts",
-  "version": "1.0.0",
-  "private": true,
   "description": "NCrafts",
+  "version": "1.0.0",
   "author": "Ismaïl <nguyen.ismail@gmail.com>",
-  "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --history-api-fallback",
-    "postinstall": "npm run build",
-    "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules",
-    "start": "node server.js"
-  },
+  "private": true,
   "main": "server.js",
+  "scripts": {
+    "postinstall": "npm run build",
+    "start": "node server.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --history-api-fallback",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules"
+  },
   "dependencies": {
     "connect-history-api-fallback": "^1.5.0",
     "express": "^4.16.4",
     "heroku-ssl-redirect": "0.0.4",
     "localforage": "^1.5.7",
-    "register-service-worker": "^1.6.2",
     "serve-static": "^1.13.2",
     "showdown": "^1.9.0",
     "vue": "^2.3.3",
@@ -26,7 +25,6 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-pwa": "^3.7.0",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-preset-env": "^1.5.1",
