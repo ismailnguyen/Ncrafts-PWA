@@ -4,7 +4,7 @@
 
 Live : [https://app.ncrafts.io](https://app.ncrafts.io)
 
-`Vue JS` `Materialize CSS` `Azure`
+`Progressive Web App` `Vue JS` `Materialize CSS` `Azure`
 
 ## Screenshots
 
